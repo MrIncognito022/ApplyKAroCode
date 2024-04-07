@@ -53,6 +53,35 @@
             <input type="text" id="applyprocess" class="form-control">
         </div>
     </div>
+
+    <div class="row mt-3">
+        <div class="col-2">
+            <label for="applicationfee" class="form-label">Application Fee</label>
+        </div>
+        <div class="col-9">
+            <input type="text" id="applicationfee" class="form-control">
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-2">
+            <label for="totalvacancies" class="form-label">Total Vacancies</label>
+        </div>
+        <div class="col-9">
+            <input type="text" id="totalvacancies" class="form-control">
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-2">
+            <label for="education" class="form-label">Education Required</label>
+        </div>
+        <div class="col-9">
+            <input type="text" id="education" class="form-control">
+        </div>
+    </div>
+
+
     <div class="row mt-3">
         <div class="col-2">
             <label for="JobNature" class="form-label">Job Nature</label>
@@ -62,6 +91,14 @@
         </div>
     </div>
 
+    <div class="row mt-3">
+        <div class="col-2">
+            <label for="jobtype" class="form-label">Job Type</label>
+        </div>
+        <div class="col-9">
+            <input type="text" id="jobtype" class="form-control">
+        </div>
+    </div>
 
     <div class="row mt-3">
         <div class="col-2">
@@ -72,6 +109,43 @@
         </div>
     </div>
     
+    <div class="row mt-3">
+        <div class="col-2">
+            <label for="experienced" class="form-label">Experienced Required</label>
+        </div>
+        <div class="col-9">
+            <input type="text" id="experienced" class="form-control">
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-2">
+            <label for="scale" class="form-label">Scale</label>
+        </div>
+        <div class="col-9">
+            <input type="text" id="scale" class="form-control">
+        </div>
+    </div>
+
+
+    <div class="row mt-3">
+        <div class="col-2">
+            <label for="applylink" class="form-label">Apply Link</label>
+        </div>
+        <div class="col-9">
+            <input type="text" id="applylink" class="form-control">
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-2">
+            <label for="agelimit" class="form-label">Age Limit</label>
+        </div>
+        <div class="col-9">
+            <input type="text" id="agelimit" class="form-control">
+        </div>
+    </div>
+
     <div class="row mt-3">
         <div class="col-10">
             <button onclick="generateHTML()" class="btn btn-primary mt-3">Generate Code</button>
@@ -86,9 +160,6 @@
             <textarea id="htmlOutput" class="form-control mt-4" rows="10" readonly></textarea>
         </div>
     </div>
-
-    
-
     <div id="output" class="mt-3"></div>
 </div>
 
@@ -104,8 +175,15 @@ function generateHTML() {
     let postsDetail = document.getElementById("PostsDetail").value;
     let applyprocess = document.getElementById("applyprocess").value;
     let advertisedin = document.getElementById("advertisedin").value;
+    let scale = document.getElementById("scale").value;
+    let education = document.getElementById("education").value;
     let JobNature = document.getElementById("JobNature").value;
+    let jobType = document.getElementById("jobtype").value;
+    let ageLimit = document.getElementById("agelimit").value;
+    let totalvacancies = document.getElementById("totalvacancies").value;
+    let experienced = document.getElementById("experienced").value;
     let totalPostsarray = postsDetail.split(',');
+    let applylink = document.getElementById('applylink').value;
     let postCount = totalPostsarray.length;
     generatedCode = generatedCode + `<!-- wp:paragraph -->
 <p>National School of Public Policy has invited applications for various posts of Additional Director Staff (BPS-18/19), Additional Director (Program and Publication)(BPS-19), Additional Director(Policy Analysis)(BPS-19), Additional Director (Admin)(BPS-19), Medical Officer(BPS-18/19), Account Officer(BPS-17/18), Assistant Director IT(BPS-17), Assistant Research Librarian(BPS-17).</p>
@@ -129,6 +207,32 @@ if(applyprocess!=''){
 }
 if(JobNature!=''){
     generatedCode = generatedCode + `<tr><td><strong>Job Nature</strong></td><td>${JobNature}</td></tr>`;
+}
+
+if(jobType!=''){
+    generatedCode = generatedCode + `<tr><td><strong>Job Type</strong></td><td>${jobType}</td></tr>`;
+}
+
+if(totalvacancies!=''){
+    generatedCode = generatedCode + `<tr><td><strong>Total Vacancies</strong></td><td>${totalvacancies}</td></tr>`;
+}
+
+if(scale!=''){
+    generatedCode = generatedCode + `<tr><td><strong>Scale</strong></td><td>${scale}</td></tr>`;
+}
+
+if(experienced!=''){
+    generatedCode = generatedCode + `<tr><td><strong>Experienced Required</strong></td><td>${experienced}</td></tr>`;
+}
+if(education!=''){
+    generatedCode = generatedCode + `<tr><td><strong>Required Education</strong></td><td>${education}</td></tr>`;
+}
+if(ageLimit!=''){
+    generatedCode = generatedCode + `<tr><td><strong>Age Limit</strong></td><td>${ageLimit}</td></tr>`;
+}
+
+if(applylink!=''){
+    generatedCode = generatedCode + `<tr><td><strong>Age Limit</strong></td><td>${ageLimit}</td></tr>`;
 }
 
 
