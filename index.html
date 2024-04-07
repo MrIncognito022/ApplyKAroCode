@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Code Generator</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-2">
+            <label for="organizationName" class="form-label">Organization Name:</label>
+        </div>
+        <div class="col-9">
+            <input type="text" id="organizationName" class="form-control">
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-2">
+            <label for="PublishDate" class="form-label">Publish Date:</label>
+        </div>
+        <div class="col-9">
+            <input type="text" id="PublishDate" class="form-control">
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-2">
+            <label for="LastDate" class="form-label">Last Date:</label>
+        </div>
+        <div class="col-9">
+            <input type="text" id="LastDate" class="form-control">
+        </div>
+    </div>
+
+   
+    <div class="row mt-3">
+        <div class="col-2">
+            <label for="advertisedin" class="form-label">Advertised In</label>
+        </div>
+        <div class="col-9">
+            <input type="text" id="advertisedin" class="form-control">
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-2">
+            <label for="applyprocess" class="form-label">Apply Process</label>
+        </div>
+        <div class="col-9">
+            <input type="text" id="applyprocess" class="form-control">
+        </div>
+    </div>
+
+
+    <div class="row mt-3">
+        <div class="col-2">
+            <label for="PostsDetail" class="form-label">Enter Posts:</label>
+        </div>
+        <div class="col-9">
+            <input type="text" id="PostsDetail" class="form-control">
+        </div>
+    </div>
+
+    
+    <button onclick="generateHTML()" class="btn btn-primary mt-3">Generate Code</button>
+    <div class="row mt-3">
+        <div class="col-12">
+            <textarea id="htmlOutput" class="form-control mt-4" rows="10" readonly></textarea>
+        </div>
+    </div>
+
+    
+
+    <div id="output" class="mt-3"></div>
+</div>
+
+<script>
+function generateHTML() {
+    let outputDiv = document.getElementById("output");
+    let generatedCode = '';
+    let wpListCode = '';
+    let tableInsideCode = '';
+    let organizationName = document.getElementById("organizationName").value;
+    let PublishDate = document.getElementById("PublishDate").value;
+    let LastDate = document.getElementById("LastDate").value;
+    let postsDetail = document.getElementById("PostsDetail").value;
+    let applyprocess = document.getElementById("applyprocess").value;
+    let advertisedin = document.getElementById("advertisedin").value;
+    let totalPostsarray = postsDetail.split(',');
+    let postCount = totalPostsarray.length;
+    generatedCode = generatedCode + `<!-- wp:paragraph -->
+<p>National School of Public Policy has invited applications for various posts of Additional Director Staff (BPS-18/19), Additional Director (Program and Publication)(BPS-19), Additional Director(Policy Analysis)(BPS-19), Additional Director (Admin)(BPS-19), Medical Officer(BPS-18/19), Account Officer(BPS-17/18), Assistant Director IT(BPS-17), Assistant Research Librarian(BPS-17).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The Jobs are advertised in Dawn News Paper on <strong>${PublishDate}</strong> and the last date for the submission of application is <strong>${LastDate}</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"style":{"elements":{"link":{"color":{"text":"var:preset|color|ast-global-color-1"}}}},"textColor":"ast-global-color-1"} -->
+<h2 class="wp-block-heading has-ast-global-color-1-color has-text-color has-link-color">Short Information</h2>
+<!-- /wp:heading -->`;
+
+generatedCode =  generatedCode + `<!-- wp:flexible-table-block/table {"style":{"elements":{"link":{"color":{"text":"var:preset|color|ast-global-color-0"}}}},"textColor":"ast-global-color-0","className":"is-style-stripes"} -->
+<figure class="wp-block-flexible-table-block-table is-style-stripes has-link-color"><table class="has-ast-global-color-0-color has-text-color has-link-color has-fixed-layout"><tbody><tr><td><strong>Date Posted</strong></td><td>${PublishDate}</td></tr><tr><td><strong>Last Date To Apply</strong></td><td>${LastDate}</td></tr>`;
+if(advertisedin!=''){
+    generatedCode = generatedCode + `<tr><td><strong>Advertised in</strong></td><td>${advertisedin}</td></tr>`;
+}
+if(applyprocess!=''){
+    generatedCode = generatedCode + `<tr><td><strong>Apply Process</strong></td><td>${applyprocess}</td></tr>`;
+}
+
+generatedCode = generatedCode + `</tbody></table></figure> <!-- /wp:flexible-table-block/table -->`;
+
+generatedCode = generatedCode + `<!-- wp:heading {"style":{"elements":{"link":{"color":{"text":"var:preset|color|ast-global-color-1"}}}},"textColor":"ast-global-color-1"} -->
+<h2 class="wp-block-heading has-ast-global-color-1-color has-text-color has-link-color">Positions Available</h2>
+<!-- /wp:heading -->`;
+generatedCode = generatedCode +  `<!-- wp:list {"ordered":true} -->
+<ol>`;
+totalPostsarray.forEach(element => {
+    generatedCode = generatedCode + `<!-- wp:list-item -->
+<li>${element}</li>
+<!-- /wp:list-item -->`;
+});
+
+generatedCode = generatedCode + `</ol>
+<!-- /wp:list -->`;
+
+
+
+generatedCode = generatedCode + `</tbody></table></figure>
+<!-- /wp:flexible-table-block/table -->`;
+
+document.getElementById('htmlOutput').value = generatedCode;
+}
+</script>
+
+</body>
+</html>
