@@ -186,7 +186,12 @@ function generateHTML() {
     let applylink = document.getElementById('applylink').value;
     let postCount = totalPostsarray.length;
     generatedCode = generatedCode + `<!-- wp:paragraph -->
-<p>National School of Public Policy has invited applications for various posts of Additional Director Staff (BPS-18/19), Additional Director (Program and Publication)(BPS-19), Additional Director(Policy Analysis)(BPS-19), Additional Director (Admin)(BPS-19), Medical Officer(BPS-18/19), Account Officer(BPS-17/18), Assistant Director IT(BPS-17), Assistant Research Librarian(BPS-17).</p>
+<p>${organizationName} has invited applications for various posts of `;
+
+    totalPostsarray.forEach(element=>{
+        generatedCode = generatedCode + element + ',';
+    })
+    generatedCode = generatedCode + `</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -232,7 +237,7 @@ if(ageLimit!=''){
 }
 
 if(applylink!=''){
-    generatedCode = generatedCode + `<tr><td><strong>Age Limit</strong></td><td>${ageLimit}</td></tr>`;
+    generatedCode = generatedCode + `<tr><td><strong>Apply Link</strong></td><td><strong><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-ast-global-color-0-color"><a href="${applylink}">Click Here</a></mark></strong></td></tr>`;
 }
 
 
@@ -254,8 +259,12 @@ generatedCode = generatedCode + `</ol>
 
 
 
-generatedCode = generatedCode + `</tbody></table></figure>
-<!-- /wp:flexible-table-block/table -->`;
+generatedCode = generatedCode + `<!-- wp:heading {"style":{"elements":{"link":{"color":{"text":"var:preset|color|ast-global-color-1"}}}},"textColor":"ast-global-color-1"} -->
+<h2 class="wp-block-heading has-ast-global-color-1-color has-text-color has-link-color">Important Links</h2>
+<!-- /wp:heading -->
+
+<!-- wp:flexible-table-block/table {"style":{"elements":{"link":{"color":{"text":"var:preset|color|ast-global-color-0"}}}},"textColor":"ast-global-color-0"} -->
+<figure class="wp-block-flexible-table-block-table has-link-color"><table class="has-ast-global-color-0-color has-text-color has-link-color has-fixed-layout"><tbody><tr><td style="text-align:left;font-size:20px"><strong><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-ast-global-color-8-color">Visit Website Home Page</mark></strong></td><td style="text-align:center;font-size:20px"><a href="http://Applykaropk.com" data-type="link" data-id="Applykaropk.com"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-ast-global-color-0-color"><strong>Click here</strong></mark></a></td></tr><tr><td style="font-size:20px"><strong><mark style="background-color:rgba(0, 0, 0, 0);color:#a53a3a" class="has-inline-color">Apply Link</mark></strong></td><td style="text-align:center;font-size:20px"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-ast-global-color-0-color"><strong><a href="${applylink}">Click here</a></strong></mark></td></tr><tr><td style="font-size:20px"><strong><mark style="background-color:rgba(0, 0, 0, 0);color:#1c4960" class="has-inline-color">Follow Us on Facebook</mark></strong></td><td style="font-size:20px;text-align:center"><a href="https://www.facebook.com/profile.php?id=61556316484587" target="_blank" data-type="link" data-id="Applykaropk.com" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-ast-global-color-0-color"><strong>Click here</strong></mark></a></td></tr><tr><td style="font-size:20px"><mark style="background-color:rgba(0, 0, 0, 0);color:#b829bc" class="has-inline-color"><strong>Join Us on WhatsApp</strong></mark></td><td style="font-size:20px;text-align:center"><a href="https://chat.whatsapp.com/E8rc7OyCyZrIccDsFu1wT1" target="_blank" data-type="link" data-id="Applykaropk.com" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-ast-global-color-0-color"><strong>Click here</strong></mark></a></td></tr></tbody></table></figure>`
 
 document.getElementById('htmlOutput').value = generatedCode;
 
