@@ -53,6 +53,14 @@
             <input type="text" id="applyprocess" class="form-control">
         </div>
     </div>
+    <div class="row mt-3">
+        <div class="col-2">
+            <label for="JobNature" class="form-label">Job Nature</label>
+        </div>
+        <div class="col-9">
+            <input type="text" id="JobNature" class="form-control">
+        </div>
+    </div>
 
 
     <div class="row mt-3">
@@ -63,9 +71,16 @@
             <input type="text" id="PostsDetail" class="form-control">
         </div>
     </div>
-
     
-    <button onclick="generateHTML()" class="btn btn-primary mt-3">Generate Code</button>
+    <div class="row mt-3">
+        <div class="col-10">
+            <button onclick="generateHTML()" class="btn btn-primary mt-3">Generate Code</button>
+        </div>
+        <div class="col-2" >
+            <button id="CopToButton" type="button" class="btn btn-primary mt-3 btn-danger"   onclick="copyTextboxContent()" >Click To Copy</button>
+        </div>
+    </div>
+    
     <div class="row mt-3">
         <div class="col-12">
             <textarea id="htmlOutput" class="form-control mt-4" rows="10" readonly></textarea>
@@ -89,6 +104,7 @@ function generateHTML() {
     let postsDetail = document.getElementById("PostsDetail").value;
     let applyprocess = document.getElementById("applyprocess").value;
     let advertisedin = document.getElementById("advertisedin").value;
+    let JobNature = document.getElementById("JobNature").value;
     let totalPostsarray = postsDetail.split(',');
     let postCount = totalPostsarray.length;
     generatedCode = generatedCode + `<!-- wp:paragraph -->
@@ -111,6 +127,10 @@ if(advertisedin!=''){
 if(applyprocess!=''){
     generatedCode = generatedCode + `<tr><td><strong>Apply Process</strong></td><td>${applyprocess}</td></tr>`;
 }
+if(JobNature!=''){
+    generatedCode = generatedCode + `<tr><td><strong>Job Nature</strong></td><td>${JobNature}</td></tr>`;
+}
+
 
 generatedCode = generatedCode + `</tbody></table></figure> <!-- /wp:flexible-table-block/table -->`;
 
@@ -134,7 +154,22 @@ generatedCode = generatedCode + `</tbody></table></figure>
 <!-- /wp:flexible-table-block/table -->`;
 
 document.getElementById('htmlOutput').value = generatedCode;
+
+function copyTextboxContent() {
+    var textbox = document.getElementById('PostsDetail');
+    textbox.select();
+    document.execCommand('copy');
 }
+
+}
+
+function copyTextboxContent() {
+    console.log("I am here");
+    var textbox = document.getElementById('htmlOutput');
+    textbox.select();
+    document.execCommand('copy');
+}
+
 </script>
 
 </body>
